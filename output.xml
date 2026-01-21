@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4 (Python 3.12.9 on win32)" generated="2026-01-19T16:17:59.206597" rpa="false" schemaversion="5">
+<suite id="s1" name="Practice Test Table" source="C:\Users\tomas.juselius\Repo\DemoT\tests\practice_test_table.robot">
+<test id="s1-t1" name="Filter Java courses with Beginner or Advanced levels" line="8">
+<kw name="Open Practice Table Page" owner="practice_page">
+<kw name="New Page" owner="Browser">
+<msg time="2026-01-19T16:17:59.801920" level="INFO">Starting Browser process C:\Program Files\Python312\Lib\site-packages\Browser\wrapper\index.js using at 127.0.0.1:65049</msg>
+<msg time="2026-01-19T16:18:05.663642" level="INFO">Successfully initialized new page object and opened url: https://practicetestautomation.com/practice-test-table/</msg>
+<msg time="2026-01-19T16:18:05.663642" level="INFO">No browser and context was open. New browser and context was automatically opened when page is created.</msg>
+<arg>${URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2026-01-19T16:17:59.743005" elapsed="5.921972"/>
+</kw>
+<doc>Opens the practice table page.</doc>
+<status status="PASS" start="2026-01-19T16:17:59.741500" elapsed="5.923477"/>
+</kw>
+<kw name="Filter By Language Java" owner="practice_page">
+<kw name="Click" owner="Browser">
+<msg time="2026-01-19T16:18:05.665982" level="INFO">Clicks the element 'role=radio[name="Java"]'.</msg>
+<arg>${RADIO_JAVA}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.665982" elapsed="0.062617"/>
+</kw>
+<doc>Selects the Java language filter.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.664977" elapsed="0.063622"/>
+</kw>
+<kw name="Filter Out Intermediate Level" owner="practice_page">
+<kw name="Uncheck Checkbox" owner="Browser">
+<arg>${CHECKBOX_INTERMEDIATE}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Unchecks the checkbox found by ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.730633" elapsed="0.043410"/>
+</kw>
+<doc>Unchecks the Intermediate level checkbox.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.730104" elapsed="0.043939"/>
+</kw>
+<kw name="Verify Visible Row Count Is" owner="practice_page">
+<kw name="Get Element Count" owner="Browser">
+<arg>${TABLE_ROWS_VISIBLE}</arg>
+<arg>==</arg>
+<arg>${expected_count}</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the count of elements found with ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.775189" elapsed="0.008864"/>
+</kw>
+<arg>4</arg>
+<doc>Verifies that the number of visible rows in the table matches the expected count.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.774043" elapsed="0.010010"/>
+</kw>
+<kw name="Verify Rows Content For Java Beginner Or Advanced" owner="practice_page">
+<kw name="Get Elements" owner="Browser">
+<msg time="2026-01-19T16:18:05.797331" level="INFO">Found locator('table tbody tr:visible').first(),locator('table tbody tr:visible').nth(1),locator('table tbody tr:visible').nth(2),locator('table tbody tr:visible').nth(3) Locators successfully.</msg>
+<msg time="2026-01-19T16:18:05.797331" level="INFO">${rows} = ['table tbody tr:visible &gt;&gt; nth=0', 'table tbody tr:visible &gt;&gt; nth=1', 'table tbody tr:visible &gt;&gt; nth=2', 'table tbody tr:visible &gt;&gt; nth=3']</msg>
+<var>${rows}</var>
+<arg>${TABLE_ROWS_VISIBLE}</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns a reference to Playwright [https://playwright.dev/docs/api/class-locator|Locator]
+for all matched elements by ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.785623" elapsed="0.011708"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Get Text" owner="Browser">
+<msg time="2026-01-19T16:18:05.828175" level="INFO">Text: 'Java'</msg>
+<msg time="2026-01-19T16:18:05.828175" level="INFO">${lang} = Java</msg>
+<var>${lang}</var>
+<arg>${row} &gt;&gt; td:nth-child(${COL_LANGUAGE_INDEX})</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.798338" elapsed="0.029837"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${lang}</arg>
+<arg>Java</arg>
+<arg>msg=Row language should be Java</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.828175" elapsed="0.001007"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2026-01-19T16:18:05.843109" level="INFO">Text: 'Advanced'</msg>
+<msg time="2026-01-19T16:18:05.844628" level="INFO">${level} = Advanced</msg>
+<var>${level}</var>
+<arg>${row} &gt;&gt; td:nth-child(${COL_LEVEL_INDEX})</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.829182" elapsed="0.015446"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>'${level}' in ['Beginner', 'Advanced']</arg>
+<arg>msg=Row level '${level}' is not Beginner or Advanced</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.844628" elapsed="0.000000"/>
+</kw>
+<var name="${row}">table tbody tr:visible &gt;&gt; nth=0</var>
+<status status="PASS" start="2026-01-19T16:18:05.798338" elapsed="0.046290"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="Browser">
+<msg time="2026-01-19T16:18:05.884084" level="INFO">Text: 'Java'</msg>
+<msg time="2026-01-19T16:18:05.884084" level="INFO">${lang} = Java</msg>
+<var>${lang}</var>
+<arg>${row} &gt;&gt; td:nth-child(${COL_LANGUAGE_INDEX})</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.845633" elapsed="0.038451"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${lang}</arg>
+<arg>Java</arg>
+<arg>msg=Row language should be Java</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.884084" elapsed="0.001627"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2026-01-19T16:18:05.900174" level="INFO">Text: 'Beginner'</msg>
+<msg time="2026-01-19T16:18:05.900174" level="INFO">${level} = Beginner</msg>
+<var>${level}</var>
+<arg>${row} &gt;&gt; td:nth-child(${COL_LEVEL_INDEX})</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.885711" elapsed="0.014463"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>'${level}' in ['Beginner', 'Advanced']</arg>
+<arg>msg=Row level '${level}' is not Beginner or Advanced</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.901174" elapsed="0.000000"/>
+</kw>
+<var name="${row}">table tbody tr:visible &gt;&gt; nth=1</var>
+<status status="PASS" start="2026-01-19T16:18:05.845633" elapsed="0.055541"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="Browser">
+<msg time="2026-01-19T16:18:05.913535" level="INFO">Text: 'Java'</msg>
+<msg time="2026-01-19T16:18:05.913535" level="INFO">${lang} = Java</msg>
+<var>${lang}</var>
+<arg>${row} &gt;&gt; td:nth-child(${COL_LANGUAGE_INDEX})</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.902176" elapsed="0.011359"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${lang}</arg>
+<arg>Java</arg>
+<arg>msg=Row language should be Java</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.914543" elapsed="0.000000"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2026-01-19T16:18:05.928756" level="INFO">Text: 'Advanced'</msg>
+<msg time="2026-01-19T16:18:05.928756" level="INFO">${level} = Advanced</msg>
+<var>${level}</var>
+<arg>${row} &gt;&gt; td:nth-child(${COL_LEVEL_INDEX})</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.914543" elapsed="0.014213"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>'${level}' in ['Beginner', 'Advanced']</arg>
+<arg>msg=Row level '${level}' is not Beginner or Advanced</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.930261" elapsed="0.000521"/>
+</kw>
+<var name="${row}">table tbody tr:visible &gt;&gt; nth=2</var>
+<status status="PASS" start="2026-01-19T16:18:05.901174" elapsed="0.029608"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="Browser">
+<msg time="2026-01-19T16:18:05.945143" level="INFO">Text: 'Java'</msg>
+<msg time="2026-01-19T16:18:05.945143" level="INFO">${lang} = Java</msg>
+<var>${lang}</var>
+<arg>${row} &gt;&gt; td:nth-child(${COL_LANGUAGE_INDEX})</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.930782" elapsed="0.014361"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${lang}</arg>
+<arg>Java</arg>
+<arg>msg=Row language should be Java</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.945143" elapsed="0.000000"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2026-01-19T16:18:05.959969" level="INFO">Text: 'Beginner'</msg>
+<msg time="2026-01-19T16:18:05.960472" level="INFO">${level} = Beginner</msg>
+<var>${level}</var>
+<arg>${row} &gt;&gt; td:nth-child(${COL_LEVEL_INDEX})</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.945143" elapsed="0.015329"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>'${level}' in ['Beginner', 'Advanced']</arg>
+<arg>msg=Row level '${level}' is not Beginner or Advanced</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.960472" elapsed="0.000545"/>
+</kw>
+<var name="${row}">table tbody tr:visible &gt;&gt; nth=3</var>
+<status status="PASS" start="2026-01-19T16:18:05.930782" elapsed="0.030235"/>
+</iter>
+<var>${row}</var>
+<value>@{rows}</value>
+<status status="PASS" start="2026-01-19T16:18:05.797331" elapsed="0.163686"/>
+</for>
+<doc>Iterates through visible rows and verifies Language is Java and Level is Beginner or Advanced.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.784053" elapsed="0.176964"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser">
+<msg time="2026-01-19T16:18:06.016041" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/test-results/filtered-table.png" target="_blank"&gt;&lt;img src="browser/screenshot/test-results/filtered-table.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<arg>filename=test-results/filtered-table</arg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2026-01-19T16:18:05.961017" elapsed="0.055024"/>
+</kw>
+<kw name="Close Browser" owner="Browser" type="TEARDOWN">
+<msg time="2026-01-19T16:18:06.093137" level="INFO">Closed browser</msg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-01-19T16:18:06.017050" elapsed="0.076087"/>
+</kw>
+<tag>practice</tag>
+<status status="PASS" start="2026-01-19T16:17:59.741500" elapsed="6.351637"/>
+</test>
+<doc>Migrated from Playwright: Filter Java courses with Beginner or Advanced levels.
+Refactored to use Page Object Model (POM).</doc>
+<status status="PASS" start="2026-01-19T16:17:59.210242" elapsed="6.889582"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">practice</stat>
+</tag>
+<suite>
+<stat name="Practice Test Table" id="s1" pass="1" fail="0" skip="0">Practice Test Table</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

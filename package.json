@@ -1,0 +1,23 @@
+{
+  "name": "demot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cypress.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "cypress run",
+    "cypress:open": "cypress open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "cypress": "^15.9.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}
