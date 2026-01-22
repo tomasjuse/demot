@@ -16,21 +16,21 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Install dependencies from package.json
-                sh 'npm install'
+                bat 'npm install'
                 
                 // Explicitly install Playwright since it is missing from package.json dependencies
                 // This ensures the test runner is available in the CI environment
-                sh 'npm install -D @playwright/test'
+                bat 'npm install -D @playwright/test'
                 
                 // Install Playwright browsers and dependencies
-                sh 'npx playwright install --with-deps'
+                bat 'npx playwright install --with-deps'
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
                 // Run only Playwright tests
-                sh 'npx playwright test'
+                bat 'npx playwright test'
             }
         }
     }
